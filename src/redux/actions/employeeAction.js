@@ -1,6 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import { FETCH_EMPLOYEE } from "../contants";
+import { API_URL, FETCH_EMPLOYEE } from "../contants";
 
 export const fetchAllEmployee = (token) => async (dispatch) => {
   try {
@@ -11,7 +11,7 @@ export const fetchAllEmployee = (token) => async (dispatch) => {
       },
     };
 
-    const { data } = await axios.get(`/employee`, config);
+    const { data } = await axios.get(`${API_URL}/employee`, config);
 
     dispatch({
       type: FETCH_EMPLOYEE,

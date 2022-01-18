@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import { fetchAllEmployee } from "../../redux/actions/employeeAction";
+import { API_URL } from "../../redux/contants";
 
 export default function EmployeePage() {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ export default function EmployeePage() {
           },
         };
       if (window.confirm(`Do you sure delete ${employee.nameEmployee} ?`)) {
-          await axios.delete(`/employee/${employee.id}`, config);
+          await axios.delete(`${API_URL}/employee/${employee.id}`, config);
         toast.success("Remove sucessfully");
       }
         dispatch(fetchAllEmployee(token));

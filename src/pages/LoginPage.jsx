@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
-import { LOGIN } from "../redux/contants";
+import { API_URL, LOGIN } from "../redux/contants";
 
 export default function LoginPage() {
   const history = useHistory();
@@ -26,7 +26,7 @@ export default function LoginPage() {
     e.preventDefault();
     console.log(username, password);
     try {
-      const response = await axios.post("/auth/login", { username, password });
+      const response = await axios.post(`${API_URL}/auth/login`, { username, password });
       if (response.data.statusCode !== 404) {
         dispatch({
           type: LOGIN,

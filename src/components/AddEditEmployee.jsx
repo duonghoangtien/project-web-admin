@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import { API_URL } from "../redux/contants";
 import EmployeeForm from "./EmployeeForm";
 
 export default function AddEditEmployee() {
@@ -16,7 +17,7 @@ export default function AddEditEmployee() {
 
     (async () => {
       try {
-        const response = await axios.get(`/employee/${employeeId}`, {
+        const response = await axios.get(`${API_URL}/employee/${employeeId}`, {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
@@ -44,7 +45,7 @@ export default function AddEditEmployee() {
   const handleFormSubmit = async (formValues) => {
     try {
       if (isEdit) {
-        await axios.put(`/employee/${employeeId}`, formValues, {
+        await axios.put(`${API_URL}/employee/${employeeId}`, formValues, {
           headers: {
             "Content-type": "multipart/form-data",
             Authorization: `Bearer ${token}`,
@@ -52,7 +53,7 @@ export default function AddEditEmployee() {
         });
       toast.success("Edit employee successfully!");
       } else {
-        await axios.post(`/employee`, formValues, {
+        await axios.post(`${API_URL}/employee`, formValues, {
           headers: {
             "Content-type": "multipart/form-data",
             Authorization: `Bearer ${token}`,

@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import { API_URL } from "../redux/contants";
 import DepartmentForm from "./DepartmentForm";
 
 export default function AddEditDepartment() {
@@ -21,7 +22,7 @@ export default function AddEditDepartment() {
 
     (async () => {
       try {
-        const response = await axios.get(`/department/${departmentId}`, config);
+        const response = await axios.get(`${API_URL}/department/${departmentId}`, config);
         console.log(response.data);
         setDepartment(response.data);
       } catch (error) {
@@ -40,10 +41,10 @@ export default function AddEditDepartment() {
   const handleFormSubmit = async (formValues) => {
     console.log(formValues);
     if (isEdit) {
-      await axios.put(`/department/${departmentId}`, formValues, config);
+      await axios.put(`${API_URL}/department/${departmentId}`, formValues, config);
       toast.success("Edit department successfully!");
     } else {
-      await axios.post(`/department`, formValues, config);
+      await axios.post(`${API_URL}/department`, formValues, config);
       toast.success("Add department successfully!");
     }
 

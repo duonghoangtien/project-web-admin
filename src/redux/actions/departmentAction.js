@@ -1,6 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import { FETCH_DEPARTMENT } from "../contants";
+import { API_URL, FETCH_DEPARTMENT } from "../contants";
 
 export const fetchAllDepartment = (token) => async (dispatch) => {
   try {
@@ -11,7 +11,7 @@ export const fetchAllDepartment = (token) => async (dispatch) => {
       },
     };
 
-    const { data } = await axios.get(`/department`, config);
+    const { data } = await axios.get(`${API_URL}/department`, config);
 
     dispatch({
       type: FETCH_DEPARTMENT,

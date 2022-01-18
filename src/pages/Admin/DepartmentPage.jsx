@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import { fetchAllDepartment } from "../../redux/actions/departmentAction";
+import { API_URL } from "../../redux/contants";
 
 export default function DepartmentPage() {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ export default function DepartmentPage() {
       if (
         window.confirm(`Bạn chắc chắn muốn xóa ${department.nameDepartment}`)
       ) {
-        await axios.delete(`/department/${department.id}`, config);
+        await axios.delete(`${API_URL}/department/${department.id}`, config);
         toast.success("Remove sucessfully");
       }
       dispatch(fetchAllDepartment(token));
